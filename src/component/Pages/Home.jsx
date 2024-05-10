@@ -1,13 +1,15 @@
-import React from 'react'
+import React from "react";
+import MovieDataComponent from "../MovieDataComponent";
+import Navbar from "../Navbar";
 
 const Home = () => {
   return (
     <div>
-      Navbar
+      <Navbar />
       sidebar
-      body
+      <MovieDataComponent />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

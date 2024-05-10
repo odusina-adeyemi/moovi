@@ -1,21 +1,25 @@
+
+// import { requestMovieData } from './actions';
+
 // Action types
-export const GENRE_LIST_REQUEST = "GENRE_LIST_REQUEST";
-export const GENRE_LIST_SUCCESS = "GENRE_LIST_SUCCESS";
-export const GENRE_LIST_FAILURE = "GENRE_LIST_FAILURE";
+import  {GENRE_LIST_REQUEST} from './types';
+import  {GENRE_LIST_SUCCESS} from './types';
+import  {GENRE_LIST_FAILURE} from './types';
 
-export const MOVIE_DATA_REQUEST = "MOVIE_DATA_REQUEST";
-export const MOVIE_DATA_FAILURE = "MOVIE_DATA_FAILURE";
-export const MOVIE_DATA_SUCCESS = "MOVIE_DATA_SUCCESS";
+import  {MOVIE_DATA_REQUEST} from './types';
+import  {MOVIE_DATA_FAILURE} from './types';
+import  {MOVIE_DATA_SUCCESS} from './types';
 
-export const SELECTED_GENRES_UPDATE = "SELECTED_GENRES_UPDATE";
+import  {SUGGESTION_REQUEST} from './types';
+import  {SELECTED_GENRES_UPDATE} from './types';
+import  {SUGGESTION_SUCCESS} from './types';
+import  {SUGGESTION_FAILURE} from './types';
 
-export const SUGGESTION_REQUEST = "SUGGESTION_REQUEST";
-export const SUGGESTION_SUCCESS = "SUGGESTION_SUCCESS";
-export const SUGGESTION_FAILURE = "SUGGESTION_FAILURE";
+import  {FILTERED_MOVIES_UPDATE} from './types';
 
-export const FILTERED_MOVIES_UPDATE = "FILTERED_MOVIES_UPDATE";
+import  {SELECTED_MOVIES_UPDATE} from './types';
 
-export const SELECTED_MOVIES_UPDATE = "SELECTED_MOVIES_UPDATE";
+
 
 // Action creators for movie data request
 export const requestMovieData = () => {
@@ -44,6 +48,16 @@ export const requestMovieData = () => {
     }
   };
 };
+
+// How to use this action creator in a component:
+
+
+
+
+
+
+
+
 
 // Action creators for genre list
 export const requestGenreList = () => ({

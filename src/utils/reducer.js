@@ -1,4 +1,4 @@
-import * as actionLoad from './actions'
+import * as actionLoad from './types'
 
 
 // Initial state
