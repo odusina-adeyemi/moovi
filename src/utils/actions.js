@@ -23,8 +23,11 @@ import  {SELECTED_MOVIES_UPDATE} from './types';
 
 // Action creators for movie data request
 export const requestMovieData = () => {
+   
+  
+  
   const url =
-    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
+    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";  
   const options = {
     method: "GET",
     headers: {
@@ -49,7 +52,32 @@ export const requestMovieData = () => {
   };
 };
 
-// How to use this action creator in a component:
+// Action creators for genre list request
+export const requestGenreList = () => {
+  const url =
+    "https://api.themoviedb.org/3/genre/movie/list?language=en";
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZWVmZTBhYzE1NTdlYzk0NGI0NTVlZjE3YjExNDJiMiIsInN1YiI6IjY2M2I1Njg2YWEwOWM1N2NiMmJmMDk5ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ycFFrj4p1YBEqZcAHVwo2tdamjiGylWQvj43yOev-QY",
+    },
+  };
+
+  return async (dispatch) => {
+    dispatch({ type: GENRE_LIST_REQUEST });
+
+    try {
+      const response = await fetch(url, options);
+      const data = await response.json();
+      console.log(data);
+      dispatch({ type: GENRE_LIST_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: GENRE_LIST_FAILURE, payload: error.message });
+    }
+  };
+};
 
 
 
@@ -59,15 +87,15 @@ export const requestMovieData = () => {
 
 
 
-// Action creators for genre list
-export const requestGenreList = () => ({
-  type: GENRE_LIST_REQUEST,
-});
+// // Action creators for genre list
+// export const requestGenreList = () => ({
+//   type: GENRE_LIST_REQUEST,
+// });
 
-export const receiveGenreListSuccess = (genres) => ({
-  type: GENRE_LIST_SUCCESS,
-  payload: genres,
-});
+// export const receiveGenreListSuccess = (genres) => ({
+//   type: GENRE_LIST_SUCCESS,
+//   payload: genres,
+// });
 
 export const receiveGenreListFailure = (error) => ({
   type: GENRE_LIST_FAILURE,

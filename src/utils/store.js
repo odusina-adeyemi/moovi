@@ -12,7 +12,7 @@ const store = configureStore({
     reducer: movieReducer
 });
 
-store.dispatch(requestMovieData())
+// store.dispatch(requestMovieData())
 
 
 export default store;

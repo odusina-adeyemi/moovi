@@ -3,7 +3,7 @@ import * as actionLoad from './types'
 
 // Initial state
 const initialState = {
-    genres: [],
+    genres: {},
     popularMovies: [],
     selectedGenres: [],
     suggestion: null,
