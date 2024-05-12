@@ -163,19 +163,86 @@ export const updateSelectedMovies = (selectedMovies) => ({
   payload: selectedMovies,
 });
 
-// make use of request data
+// // make use of request data
+// export const requestMovieDisplay = () => {
+//   return async (dispatch) => {
+//     dispatch({ type: MOVIE_INFO_REQUEST });
+
+//     try {
+//       const movieId = "28"; // Replace with the actual movie ID
+//       const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=3eefe0ac1557ec944b455ef17b1142b2&language=en-US`;
+//       const options = {
+//         method: "GET",
+//         headers: {
+//           accept: "application/json",
+//           Authorization:
+//         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZWVmZTBhYzE1NTdlYzk0NGI0NTVlZjE3YjExNDJiMiIsInN1YiI6IjY2M2I1Njg2YWEwOWM1N2NiMmJmMDk5ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ycFFrj4p1YBEqZcAHVwo2tdamjiGylWQvj43yOev-QY",
+//         },
+//       };
+
+//       const response = await fetch(url, options);
+//       const data = await response.json();
+//       console.log(data);
+//       dispatch({ type: MOVIE_INFO_SUCCESS, payload: data });
+//     } catch (error) {
+//       // Dispatch the failure action with the error message
+//       dispatch({ type: MOVIE_INFO_FAILURE, payload: error.message });
+//     }
+//   };
+// };
+
+
+
+
+// export const requestMovieDisplay = (movieId) => {
+//   return async (dispatch) => {
+//     dispatch({ type: MOVIE_INFO_REQUEST });
+
+//     try {
+//       const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=3eefe0ac1557ec944b455ef17b1142b2&language=en-US`;
+//       const options = {
+//         method: "GET",
+//         headers: {
+//           accept: "application/json",
+//           Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZWVmZTBhYzE1NTdlYzk0NGI0NTVlZjE3YjExNDJiMiIsInN1YiI6IjY2M2I1Njg2YWEwOWM1N2NiMmJmMDk5ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ycFFrj4p1YBEqZcAHVwo2tdamjiGylWQvj43yOev-QY",
+//         },
+//       };
+
+//       const response = await fetch(url, options);
+//       const data = await response.json();
+//       console.log(data);
+//       dispatch({ type: MOVIE_INFO_SUCCESS, payload: data });
+//     } catch (error) {
+//       dispatch({ type: MOVIE_INFO_FAILURE, payload: error.message });
+//     }
+//   };
+// };
+
+
+
 export const requestMovieDisplay = () => {
   return async (dispatch) => {
     dispatch({ type: MOVIE_INFO_REQUEST });
 
     try {
-      // Perform the necessary API request and data processing here
-      // ...
-      // Dispatch the success action with the retrieved data
-      // dispatch({ type: MOVIE_INFO_SUCCESS, payload: data });
+      // Extracting movieId from URL parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const movieId = urlParams.get('movieId'); // Assuming the parameter name is 'movieId'
+
+      const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=3eefe0ac1557ec944b455ef17b1142b2&language=en-US`;
+      const options = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZWVmZTBhYzE1NTdlYzk0NGI0NTVlZjE3YjExNDJiMiIsInN1YiI6IjY2M2I1Njg2YWEwOWM1N2NiMmJmMDk5ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ycFFrj4p1YBEqZcAHVwo2tdamjiGylWQvj43yOev-QY',
+        },
+      };
+
+      const response = await fetch(url, options);
+      const data = await response.json();
+      dispatch({ type: MOVIE_INFO_SUCCESS, payload: data });
     } catch (error) {
-      // Dispatch the failure action with the error message
       dispatch({ type: MOVIE_INFO_FAILURE, payload: error.message });
     }
   };
-};
+}

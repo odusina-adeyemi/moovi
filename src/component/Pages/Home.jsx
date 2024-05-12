@@ -3,6 +3,7 @@ import MovieDataComponent from "../MovieDataComponent";
 import Navbar from "../Navbar";
 import Genrelist from "../Genrelist";
 import GenresMov from "../GenresMov";
+import MovieDetailsComponent from "../MovieDetailsComponent";
 
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
       <Genrelist/>
       sidebar
       <MovieDataComponent />
+      <MovieDetailsComponent/>
       
       
     </div>
