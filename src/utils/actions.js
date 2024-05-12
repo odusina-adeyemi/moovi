@@ -1,33 +1,32 @@
-
 // import { requestMovieData } from './actions';
 
 // Action types
-import  {GENRE_LIST_REQUEST} from './types';
-import  {GENRE_LIST_SUCCESS} from './types';
-import  {GENRE_LIST_FAILURE} from './types';
+import {
+  GENRE_LIST_REQUEST,
+  MOVIE_INFO_FAILURE,
+  MOVIE_INFO_REQUEST,
+  MOVIE_INFO_SUCCESS,
+} from "./types";
+import { GENRE_LIST_SUCCESS } from "./types";
+import { GENRE_LIST_FAILURE } from "./types";
 
-import  {MOVIE_DATA_REQUEST} from './types';
-import  {MOVIE_DATA_FAILURE} from './types';
-import  {MOVIE_DATA_SUCCESS} from './types';
+import { MOVIE_DATA_REQUEST } from "./types";
+import { MOVIE_DATA_FAILURE } from "./types";
+import { MOVIE_DATA_SUCCESS } from "./types";
 
-import  {SUGGESTION_REQUEST} from './types';
-import  {SELECTED_GENRES_UPDATE} from './types';
-import  {SUGGESTION_SUCCESS} from './types';
-import  {SUGGESTION_FAILURE} from './types';
+import { SUGGESTION_REQUEST } from "./types";
+import { SELECTED_GENRES_UPDATE } from "./types";
+import { SUGGESTION_SUCCESS } from "./types";
+import { SUGGESTION_FAILURE } from "./types";
 
-import  {FILTERED_MOVIES_UPDATE} from './types';
+import { FILTERED_MOVIES_UPDATE } from "./types";
 
-import  {SELECTED_MOVIES_UPDATE} from './types';
-
-
+import { SELECTED_MOVIES_UPDATE } from "./types";
 
 // Action creators for movie data request
 export const requestMovieData = () => {
-   
-  
-  
   const url =
-    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";  
+    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1";
   const options = {
     method: "GET",
     headers: {
@@ -54,8 +53,7 @@ export const requestMovieData = () => {
 
 // Action creators for genre list request
 export const requestGenreList = () => {
-  const url =
-    "https://api.themoviedb.org/3/genre/movie/list?language=en";
+  const url = "https://api.themoviedb.org/3/genre/movie/list?language=en";
   const options = {
     method: "GET",
     headers: {
@@ -78,14 +76,6 @@ export const requestGenreList = () => {
     }
   };
 };
-
-
-
-
-
-
-
-
 
 // // Action creators for genre list
 // export const requestGenreList = () => ({
@@ -118,10 +108,33 @@ export const receivePopularMovieDataFailure = (error) => ({
 });
 
 // Action creators for selected genres update
-export const updateSelectedGenres = (selectedGenres) => ({
-  type: SELECTED_GENRES_UPDATE,
-  payload: selectedGenres,
-});
+export const updateSelectedGenres = (selectedGenres) => {
+  return async (dispatch) => {
+    try {
+      const promises = selectedGenres.map(async (genre) => {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/genre/movie/list?api_key=3eefe0ac1557ec944b455ef17b1142b2&language=en-US`
+        );
+        const data = await response.json();
+        const genreId = data.genres.find((g) => g.name === genre)?.id;
+
+        const moviesResponse = await fetch(
+          `https://api.themoviedb.org/3/discover/movie?api_key=3eefe0ac1557ec944b455ef17b1142b2&with_genres=${genreId}`
+        );
+        const moviesData = await moviesResponse.json();
+
+        return moviesData.results;
+      });
+      const results = await Promise.all(promises);
+      const allMovies = results.flat();
+
+      dispatch({ type: FILTERED_MOVIES_UPDATE, payload: allMovies });
+      console.log(allMovies);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+};
 
 // Action creators for suggestion
 export const requestSuggestion = () => ({
@@ -150,5 +163,19 @@ export const updateSelectedMovies = (selectedMovies) => ({
   payload: selectedMovies,
 });
 
+// make use of request data
+export const requestMovieDisplay = () => {
+  return async (dispatch) => {
+    dispatch({ type: MOVIE_INFO_REQUEST });
 
-// make use of request data 
+    try {
+      // Perform the necessary API request and data processing here
+      // ...
+      // Dispatch the success action with the retrieved data
+      // dispatch({ type: MOVIE_INFO_SUCCESS, payload: data });
+    } catch (error) {
+      // Dispatch the failure action with the error message
+      dispatch({ type: MOVIE_INFO_FAILURE, payload: error.message });
+    }
+  };
+};

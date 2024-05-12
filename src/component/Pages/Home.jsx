@@ -2,14 +2,19 @@ import React from "react";
 import MovieDataComponent from "../MovieDataComponent";
 import Navbar from "../Navbar";
 import Genrelist from "../Genrelist";
+import GenresMov from "../GenresMov";
+
 
 const Home = () => {
   return (
     <div>
-      <Navbar />
+      <Navbar/>
+      <GenresMov/>   
       <Genrelist/>
       sidebar
       <MovieDataComponent />
+      
+      
     </div>
   );
 };

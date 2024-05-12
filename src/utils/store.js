@@ -4,7 +4,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import movieReducer from './reducer';
-import { requestMovieData } from './actions';
+import { requestMovieData, selectedGenres } from './actions';
 
 
 
@@ -12,7 +12,7 @@ const store = configureStore({
     reducer: movieReducer
 });
 
-// store.dispatch(requestMovieData())
+//  store.dispatch(selectedGenres())
 
 
 export default store;
