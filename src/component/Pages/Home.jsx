@@ -1,18 +1,20 @@
 import React from "react";
-import MovieDataComponent from "../MovieDataComponent";
+import MovieDataComponent from "../MovieDataComponent/MovieDataComponent";
 import Navbar from "../Navbar";
 import Genrelist from "../Genrelist";
-import GenresMov from "../GenresMov";
+import GenresMov from "../GenresMov/GenresMov";
 import MovieDetailsComponent from "../MovieDetailsComponent";
+import Header from "../Header/Header";
 
 
 const Home = () => {
   return (
     <div>
       <Navbar/>
+      <Header/>
       <GenresMov/>   
       <Genrelist/>
-      sidebar
+   
       <MovieDataComponent />
       <MovieDetailsComponent/>
       

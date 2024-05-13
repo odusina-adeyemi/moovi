@@ -140,8 +140,9 @@
 
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { requestMovieData } from '../utils/actions';
-import store from '../utils/store';
+import { requestMovieData } from '../../utils/actions';
+import store from '../../utils/store';
+import './MovieDataComponent.css';
 
 const MovieDataComponent = () => {
   const dispatch = useDispatch();
@@ -175,21 +176,62 @@ const MovieDataComponent = () => {
 
   
   return (
-    <div>
-      {extractedData.length > 0 ? (
-        extractedData.map(movie => (
-          <div key={movie.id}>
-            <h2>{movie.title}</h2>
-            <p>Release Date: {movie.release_date}</p>
-            <p>Vote Average: {movie.vote_average}</p>
-            <p>Overview: {movie.overview}</p>
-            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
-          </div>
-        ))
-      ) : (
-        <p>No movie data available.</p>
-      )}
-    </div>
+
+   
+
+    // <div>
+    //   {extractedData.length > 0 ? (
+    //     extractedData.map(movie => (
+    //       <div key={movie.id}>
+    //         <h2>{movie.title}</h2>
+    //         <p>Release Date: {movie.release_date}</p>
+    //         <p>Vote Average: {movie.vote_average}</p>
+    //         <p>Overview: {movie.overview}</p>
+    //         <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+    //       </div>
+    //     ))
+    //   ) : (
+    //     <p>No movie data available.</p>
+    //   )}
+    // </div>
+
+// // <div className="movie-container">
+// //   {extractedData.length > 0 ? (
+// //     extractedData.map(movie => (
+// //       <div key={movie.id} className="movie-card">
+// //         <div className="overlay">
+// //           <h2>{movie.title}</h2>
+// //           <p>Release Date: {movie.release_date}</p>
+// //           <p>Vote Average: {movie.vote_average}</p>
+// //           <p>Overview: {movie.overview}</p>
+// //         </div>
+// //         <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} className="movie-image" />
+// //       </div>
+//     ))
+//   ) : (
+//     <p>No movie data available.</p>
+//   )}
+// </div>
+<div className="movie-container-custom">
+  {extractedData.length > 0 ? (
+    extractedData.map(movie => (
+      <div key={movie.id} className="movie-card-custom">
+        <div className="movie-overlay-custom">
+          <p>{movie.overview}</p>
+        </div>
+        <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} className="movie-image-custom" />
+        <div className="movie-details-custom">
+          <h2>{movie.title}</h2>
+          <p>Release Date: {movie.release_date}</p>
+          <p>Vote Average: {movie.vote_average}</p>
+        </div>
+      </div>
+    ))
+  ) : (
+    <p>No movie data available.</p>
+  )}
+</div>
+
   );
   
 

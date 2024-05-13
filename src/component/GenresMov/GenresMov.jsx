@@ -493,8 +493,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { Chip } from "@mui/material";
 
-import { updateFilteredMovies, updateSelectedGenres } from "../utils/actions";
-import { FILTERED_MOVIES_UPDATE } from "../utils/types";
+import { updateFilteredMovies, updateSelectedGenres } from "../../utils/actions";
+import { FILTERED_MOVIES_UPDATE } from "../../utils/types";
+import "./GenresMov.css";
 
 const GenresMov = () => {
   const dispatch = useDispatch();
@@ -535,26 +536,38 @@ const GenresMov = () => {
 
   return (
     <div>
-      {genresArray.map((genre) => (
-        <Chip
-        
-          key={genre.id}
-          label={genre.name}
-          color="secondary"
-          clickable
-          onClick={() => handleGenreClick(genre.name)}
-        />
-      ))}
-      {filteredMovies.map((movie) => (
-        <div key={movie.id}>
-          <h2>{movie.title}</h2>
-          <p>{movie.release_date}</p>
-          <img
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            alt={movie.title}
+      <div className="movie-container">
+        {genresArray.map((genre) => (
+          <Chip
+            key={genre.id}
+            label={genre.name}
+            color="secondary"
+            clickable
+            onClick={() => handleGenreClick(genre.name)}
           />
-        </div>
-      ))}
+        ))}
+      </div>
+
+      <div className="movie-container">
+        {filteredMovies.map((movie) => (
+          <div key={movie.id} className="movie-card">
+            <div className="overlay">
+              <p><span className="span">Description: <br></br></span>{movie.overview}</p>
+            </div>
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              alt={movie.title}
+              className="movie-image"
+            />
+            <div className="movie-details">
+              <h2 className="movie-title">{movie.title}</h2>
+              <p className="movie-info">
+                <span style={{ fontWeight: "bold" }}>Release Year:</span> {movie.release_date}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

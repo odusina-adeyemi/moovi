@@ -74,13 +74,13 @@ const Genrelist = () => {
 
   return (
     <div>
-      {genresArray.length > 0 ? (
+      {/* {genresArray.length > 0 ? (
         genresArray.map(({ id, name }) => (
           <div key={id}>{name}</div>
         ))
       ) : (
         <p>No genres available.</p>
-      )}
+      )} */}
     </div>
   );
 };

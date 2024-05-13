@@ -29,29 +29,69 @@ import logo2 from '../assets/logo2.png'
 
 // export default Navbar;
 
+// const Navbar = () => {
+//   return (
+//     <div style={{ display: "flex", flexDirection: "row", justifyContent: 'space-between' }}>
+//       <div>
+//         <Link to="/" style={{ color: "white", fontSize: "2xl", fontWeight: "bold" }}>
+//           <img style={{ width: '80px', color: "white" }} src={logo2} alt="Logo" />
+//         </Link>
+//       </div>
+//       <div style={{ margin: '5px', padding: '5px', display: 'flex ', flexDirection:'row'}}>
+//         <ul >
+//           <li>
+//             <Link to="/" style={{ color: "white", textDecoration: 'none', hover: { color: "gray-300" } }}>
+//               Home
+//             </Link>
+//           </li>
+//           <li>
+//             <Link to="/about" style={{ color: "white", textDecoration: 'none', hover: { color: "gray-300" } }}>
+//               About
+//             </Link>
+//           </li>
+//         </ul>
+//       </div>
+//     </div>
+//   );
+// };
+// export default Navbar;
+
+
+
 const Navbar = () => {
   return (
-    <div style={{display : "flex", flexDirection: "row", justifyContent: 'space-between' }} >
-      {/* className="container mx-auto flex flex-row justify-between items-center" */}
+    <div  style={{  justifyContent: 'space-around', display:'flex' , marginBottom: '2px'}}>
+     
+    
       <div>
-        <Link to="/" className="text-white text-2xl font-bold">
-          <img style={{width:80}} className="color-white w-45" src={logo2} />
+        <Link to="/" style={{ color: "white", fontSize: "2xl", fontWeight: "bold" }}>
+          <img style={{ width: '80px', color: "white" }} src={logo2} alt="Logo" />
         </Link>
       </div>
-      <div>
-        <ul  style={{display : "flex", flexDirection: "row", justifyContent: 'n' }} className="flex flex-row space-x-4 list-none">
-          <li >
-            <Link to="/" className="text-white hover:text-gray-300">
+      <div style={{ margin: '5px', padding: '5px', display: 'flex', flexDirection: 'row' }}>
+        <ul style={{ display: 'flex', flexDirection: 'row', listStyle: 'none', padding: 0 }}>
+          <li style={{ marginRight: '30px' }}>
+            <Link to="/" style={{ color: "white", textDecoration: 'none', hover: { color: "gray-300" } }}>
               Home
             </Link>
           </li>
-          <li>
-            <Link to="/about">About</Link>
+          <li style={{ marginRight: '50px' }}>
+            <Link to="/about" style={{ color: "white", textDecoration: 'none', hover: { color: "gray-300" } }}>
+              About
+            </Link>
           </li>
         </ul>
- 
+       
+     
+      </div>
+      
+     
+      <div>
+      {/* <hr  style={{width:'1200px',  color: 'white'}}/> */}
       </div>
     </div>
+    
   );
 };
+
 export default Navbar;
