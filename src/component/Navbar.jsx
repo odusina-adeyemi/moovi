@@ -60,7 +60,7 @@ import logo2 from '../assets/logo2.png'
 
 const Navbar = () => {
   return (
-    <div  style={{  justifyContent: 'space-around', display:'flex' , marginBottom: '2px'}}>
+    <div  style={{  justifyContent: 'space-between', display:'flex' , marginBottom: '2px'}}>
      
     
       <div>
