@@ -1,12 +1,14 @@
-
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { Chip } from "@mui/material";
 
-import { updateFilteredMovies, updateSelectedGenres } from "../../utils/actions";
+import {
+  updateFilteredMovies,
+  updateSelectedGenres,
+} from "../../utils/actions";
 import { FILTERED_MOVIES_UPDATE } from "../../utils/types";
 import "./GenresMov.css";
+import { Link } from "react-router-dom";
 
 const GenresMov = () => {
   const dispatch = useDispatch();
@@ -36,7 +38,7 @@ const GenresMov = () => {
     }
   }, [dispatch, selectedGenres, prevSelectedGenres]);
   console.log(selectedGenres);
-  console.log(prevSelectedGenres)
+  console.log(prevSelectedGenres);
 
   const handleGenreClick = (genre) => {
     const genreId = genresArray.find((g) => g.name === genre)?.id;
@@ -63,7 +65,17 @@ const GenresMov = () => {
         {filteredMovies.map((movie) => (
           <div key={movie.id} className="movie-card">
             <div className="overlay">
-              <p><span className="span">Description: <br></br></span>{movie.overview}</p>
+              <Link
+                to={`/details/${movie.id}`}
+          
+              >
+                <p>
+                  <span className="span">
+                    Description: <br></br>
+                  </span>
+                  {movie.overview}
+                </p>
+              </Link>
             </div>
             <img
               src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -73,7 +85,8 @@ const GenresMov = () => {
             <div className="movie-details">
               <h2 className="movie-title">{movie.title}</h2>
               <p className="movie-info">
-                <span style={{ fontWeight: "bold" }}>Release Year:</span> {movie.release_date}
+                <span style={{ fontWeight: "bold" }}>Release Year:</span>{" "}
+                {movie.release_date}
               </p>
             </div>
           </div>
@@ -84,6 +97,3 @@ const GenresMov = () => {
 };
 
 export default GenresMov;
-
-
-
