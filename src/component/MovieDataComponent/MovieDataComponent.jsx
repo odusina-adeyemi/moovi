@@ -143,6 +143,7 @@ import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { requestMovieData } from '../../utils/actions';
 import store from '../../utils/store';
 import './MovieDataComponent.css';
+import { Link } from 'react-router-dom';
 
 const MovieDataComponent = () => {
   const dispatch = useDispatch();
@@ -217,7 +218,10 @@ const MovieDataComponent = () => {
     extractedData.map(movie => (
       <div key={movie.id} className="movie-card-custom">
         <div className="movie-overlay-custom">
+          <Link to={`/details/${movie.id}`}> 
           <p>{movie.overview}</p>
+          </Link>
+         
         </div>
         <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} className="movie-image-custom" />
         <div className="movie-details-custom">

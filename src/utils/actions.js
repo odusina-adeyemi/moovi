@@ -23,6 +23,8 @@ import { FILTERED_MOVIES_UPDATE } from "./types";
 
 import { SELECTED_MOVIES_UPDATE } from "./types";
 
+import { useParams } from "react-router-dom";
+
 // Action creators for movie data request
 export const requestMovieData = () => {
   const url =
@@ -171,8 +173,12 @@ export const requestMovieDisplay = () => {
 
     try {
       // Extracting movieId from URL parameter
-      const urlParams = new URLSearchParams(window.location.search);
-      const movieId = urlParams.get('movieId'); // Assuming the parameter name is 'movieId'
+      // const urlParams = new URLSearchParams(window.location.search);
+      // const movieId = urlParams.get('movieId'); // Assuming the parameter name is 'movieId'
+
+      const {id} = useParams();
+      const movieId = id
+
 
       const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=3eefe0ac1557ec944b455ef17b1142b2&language=en-US`;
       const options = {
@@ -185,6 +191,7 @@ export const requestMovieDisplay = () => {
 
       const response = await fetch(url, options);
       const data = await response.json();
+  
       dispatch({ type: MOVIE_INFO_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: MOVIE_INFO_FAILURE, payload: error.message });

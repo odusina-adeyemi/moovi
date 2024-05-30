@@ -16,7 +16,7 @@ const Home = () => {
       <Genrelist/>
    
       <MovieDataComponent />
-      <MovieDetailsComponent/>
+      {/* <MovieDetailsComponent/> */}
       
       
     </div>
